@@ -61,7 +61,7 @@ python3 scripts/web-extract.py URL --save /tmp/out.md            # → 保存文
 ## 前置检查（CDP 模式时）
 
 ```bash
-bash ~/.claude/skills/web-access/scripts/check-deps.sh
+bash scripts/check-deps.sh
 ```
 
 - **Node.js 22+**：必需（原生 WebSocket）

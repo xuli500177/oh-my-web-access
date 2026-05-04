@@ -41,8 +41,6 @@ from typing import Optional, Tuple
 JINA_PREFIX = "https://r.jina.ai/"
 DEFAULT_MAX_CHARS = 100_000
 FIRECRAWL_CLOUD_URL = "https://api.firecrawl.dev/v1"
-GEMINI_CACHE = Path.home() / ".hermes" / "gemini-web-cache.json"
-
 # ── URL Classification ─────────────────────────────────────────────────────
 
 GITHUB_URL_RE = re.compile(

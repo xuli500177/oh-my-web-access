@@ -7,7 +7,7 @@
 ## 启动
 
 ```bash
-bash ~/.claude/skills/web-access/scripts/check-deps.sh
+bash ../../scripts/check-deps.sh
 ```
 
 脚本检查 Node.js、Chrome 端口，确保 Proxy 已连接（未运行则自动启动）。

@@ -67,7 +67,7 @@ python3 scripts/web-extract.py URL --save /tmp/out.md    # Save to file
 
 Gemini Web is **free and unlimited** — no API key, just your browser session cookies.
 
-1. Install [Cookie-Editor](https://cookie-editor.cg.guide/) or [EditThisCookie](https://www.editthiscookie.com/)
+1. Install [Cookie-Editor](https://www.cookie-editor.com/) or [EditThisCookie](https://www.editthiscookie.com/)
 2. Visit [gemini.google.com](https://gemini.google.com) and log in
 3. Export cookies as JSON
 4. Import:
