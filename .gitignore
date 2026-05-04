@@ -1,0 +1,24 @@
+__pycache__/
+*.pyc
+*.egg-info/
+.mypy_cache/
+.pytest_cache/
+
+# Temp files
+*.tmp
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Cookies / secrets (should never be committed)
+*.json
+cookies.json
+*.pem
+*.key
+
+# Build artifacts
+node_modules/
+dist/
+build/
