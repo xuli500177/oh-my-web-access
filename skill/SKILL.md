@@ -1,7 +1,7 @@
 ---
 name: web-access
 license: MIT
-github: https://github.com/eze-is/web-access
+github: https://github.com/xuli500177/oh-my-web-access
 description: "联网操作工具。当用户要求进行任何网络交互时触发。触发词：打开网页、访问网站、登录、抓取、爬取、浏览器操作、打开链接、看网页、网页截图、操作网页。触发场景：搜索信息、查看网页内容、访问需要登录的网站、操作网页界面、抓取社交媒体内容（小红书、微博、推特等）、读取动态渲染页面、以及任何需要真实浏览器环境的网络任务。特殊处理：GitHub 仓库自动 clone、YouTube 视频自动提取转录稿、PDF 自动提取文本。智能降级链：Readability → 结构化数据解析 → Jina → Gemini Web → Scrapling → CDP 浏览器。也适用于：Cloudflare 绕过、反爬页面、多页爬取、stealth 浏览。"
 metadata:
   author: 右太极

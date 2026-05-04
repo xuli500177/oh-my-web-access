@@ -18,7 +18,7 @@ A powerful web-access skill for Claude Code / Claude.ai / PI, featuring a **6-le
 pip install yt-dlp pymupdf readability-lxml trafilatura firecrawl-py "scrapling[all]"
 
 # Clone into your skills directory
-git clone https://github.com/YOUR_GITHUB/oh-my-web-access.git ~/.agents/skills/web-access
+git clone https://github.com/xuli500177/oh-my-web-access.git ~/.agents/skills/web-access
 
 # (Optional) Gemini Web — export cookies from browser
 python3 scripts/gemini-web.py import /path/to/cookies.json
