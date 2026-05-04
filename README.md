@@ -2,12 +2,12 @@
 
 A powerful web-access skill for Claude Code / Claude.ai / PI, featuring a **6-level intelligent fallback chain**, dedicated extractors for GitHub/YouTube/PDF, and full browser automation via CDP.
 
-## 亮点
+## Highlights
 
-- **🎯 分层加载设计** — SKILL.md 主文件仅 114 行，详细的操作指南、CDP API、Scrapling 用法等全部放在 `references/` 目录，按需加载。触发 skill 时只加载核心内容，大幅节省 token 消耗。
-- **🧠 Gemini Web 免费提取** — 通过浏览器缓存的 Google cookies，无需任何 API key，即可让 Gemini 直接读取任意 URL 内容。免费、无限制、支持 JS/SPA，是对付反爬页面的强力武器。
-- **🕷️ Scrapling 集成** — Stealth/Cloudflare 绕过 + Spider 多页爬取框架，填补了 Gemini Web 和 CDP 之间的空白。
-- **🔗 智能降级链** — 6 级自动降级，静态页面走轻量路径，顽固页面逐级升级。
+- **🎯 Layered Loading** — SKILL.md is only 114 lines. Detailed guides (CDP API, Scrapling, methodology) live in `references/` and load on-demand. Triggers stay lean, saving tokens.
+- **🧠 Gemini Web (Free)** — Uses your browser's cached Google cookies to let Gemini read any URL directly. No API key, no limits, handles JS/SPAs. A powerful weapon against anti-bot pages.
+- **🕷️ Scrapling Integration** — Stealth/Cloudflare bypass + Spider framework for multi-page crawling. Fills the gap between Gemini Web and CDP.
+- **🔗 Smart Fallback Chain** — 6 levels deep. Lightweight for static pages, escalates automatically for stubborn ones.
 
 ---
 
@@ -20,7 +20,7 @@ pip install yt-dlp pymupdf readability-lxml trafilatura firecrawl-py "scrapling[
 # Clone into your skills directory
 git clone https://github.com/YOUR_GITHUB/oh-my-web-access.git ~/.agents/skills/web-access
 
-# (Optional) Gemini Web setup — export cookies from browser
+# (Optional) Gemini Web — export cookies from browser
 python3 scripts/gemini-web.py import /path/to/cookies.json
 python3 scripts/gemini-web.py status
 
@@ -42,8 +42,9 @@ bash scripts/check-deps.sh
 ```
 
 ```bash
-python3 scripts/web-extract.py URL --method scrapling
-python3 scripts/web-extract.py URL --method gemini
+python3 scripts/web-extract.py URL --method scrapling   # Force Scrapling
+python3 scripts/web-extract.py URL --method gemini       # Force Gemini Web
+python3 scripts/web-extract.py URL --save /tmp/out.md    # Save to file
 ```
 
 ---
@@ -64,7 +65,7 @@ python3 scripts/web-extract.py URL --method gemini
 
 ## Gemini Web Cookie Setup
 
-Gemini Web is **free and unlimited** — no API key needed, just your browser session cookies.
+Gemini Web is **free and unlimited** — no API key, just your browser session cookies.
 
 1. Install [Cookie-Editor](https://cookie-editor.cg.guide/) or [EditThisCookie](https://www.editthiscookie.com/)
 2. Visit [gemini.google.com](https://gemini.google.com) and log in
@@ -84,18 +85,15 @@ Gemini Web is **free and unlimited** — no API key needed, just your browser se
 ```python
 from scrapling.fetchers import Fetcher, DynamicFetcher, StealthyFetcher
 
-page = Fetcher.get('https://example.com')                                    # Static
-page = DynamicFetcher.fetch('https://example.com', network_idle=True)       # JS rendering
-page = StealthyFetcher.fetch('https://protected.com', solve_cloudflare=True) # Cloudflare
+page = Fetcher.get('https://example.com')                                     # Static
+page = DynamicFetcher.fetch('https://example.com', network_idle=True)        # JS rendering
+page = StealthyFetcher.fetch('https://protected.com', solve_cloudflare=True)  # Cloudflare
 ```
 
 ### CLI
 
 ```bash
-# Cloudflare bypass
 scrapling extract stealthy-fetch 'https://protected.com' out.md --solve-cloudflare
-
-# JS rendering
 scrapling extract fetch 'https://example.com' out.md --network-idle --css-selector '.content'
 ```
 
@@ -127,16 +125,16 @@ result.items.to_json("output.json")
 
 ## CDP Browser Automation
 
-Control the user's local Chrome directly — no separate browser, session cookies work automatically.
+Control the user's local Chrome directly — no separate browser instance needed, session cookies work automatically.
 
 ```bash
-curl -s http://localhost:3456/targets                                    # List tabs
-curl -s "http://localhost:3456/new?url=https://example.com"              # New tab
-curl -s -X POST "http://localhost:3456/eval?target=ID" -d 'document.title'  # JS eval
-curl -s "http://localhost:3456/screenshot?target=ID&file=/tmp/shot.png"   # Screenshot
-curl -s -X POST "http://localhost:3456/click?target=ID" -d '.button'       # Click
-curl -s "http://localhost:3456/scroll?target=ID&direction=bottom"          # Scroll
-curl -s "http://localhost:3456/close?target=ID"                             # Close tab
+curl -s http://localhost:3456/targets                                          # List tabs
+curl -s "http://localhost:3456/new?url=https://example.com"                     # New tab
+curl -s -X POST "http://localhost:3456/eval?target=ID" -d 'document.title'      # JS eval
+curl -s "http://localhost:3456/screenshot?target=ID&file=/tmp/shot.png"         # Screenshot
+curl -s -X POST "http://localhost:3456/click?target=ID" -d '.button'            # Click
+curl -s "http://localhost:3456/scroll?target=ID&direction=bottom"               # Scroll
+curl -s "http://localhost:3456/close?target=ID"                                # Close tab
 ```
 
 ---
@@ -159,7 +157,7 @@ scripts/                   → Standalone executables
 
 ## Inspired by
 
-[web-access](https://github.com/eze-is/web-access) by [@一泽Eze](https://github.com/eze-is) — the original skill that pioneered the 6-level fallback chain and CDP integration concepts.
+[web-access](https://github.com/eze-is/web-access) by [@一泽Eze](https://github.com/eze-is) — the original skill that pioneered the 6-level fallback chain and CDP integration.
 
 ---
 
